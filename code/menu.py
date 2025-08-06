@@ -25,7 +25,7 @@ class Menu:
             #desenho do fundo
             self.window.blit(source=self.surf, dest=self.rect)
             #desenho do menu
-            self.menu_text(50,"Mountain",(255,128, 120), (320, 70))
+            self.menu_text(50,"M",(255,128, 120), (320, 70))
             self.menu_text(50, "Shotter", (255, 128, 120), (320, 105))
 
 
