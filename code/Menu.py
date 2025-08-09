@@ -1,4 +1,4 @@
-from lib2to3.pytree import convert
+#from lib2to3.pytree import convert
 
 import pygame.image
 from pygame import Surface, Rect
@@ -18,6 +18,7 @@ class Menu:
 
     def run(self, ):
 
+        menu_option = 0
         pygame.mixer_music.load('assets/bodys/menu_music.mp3')  # buscando music
         pygame.mixer_music.play(-1)  # o menos um e para fazer um loop´na music
 
@@ -25,22 +26,42 @@ class Menu:
             #desenho do fundo
             self.window.blit(source=self.surf, dest=self.rect)
             #desenho do menu
-            self.menu_text(50,"M",(255,128, 120), (320, 70))
+            self.menu_text(50,"MOUNTAIN",(255,128, 120), (320, 70))
             self.menu_text(50, "Shotter", (255, 128, 120), (320, 105))
 
 
             #tamanho = 200
             for i in range(len(MENU_OPTIONS)):
-                self.menu_text(23, MENU_OPTIONS[i], (100, 100, 100), (320, 200 + 20 * i))
-                #tamanho =+ 20
-
-
+                if i == menu_option:
+                    self.menu_text(23, MENU_OPTIONS[i], (238, 173, 45), (320, 200 + 20 * i))
+                else:
+                    self.menu_text(23, MENU_OPTIONS[i], (100, 100, 100), (320, 200 + 20 * i))
             pygame.display.flip()
+
+
+            #EVENTOS DE TECLAS
 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit() #close window
-                    quit() #end pygame
+                    quit() #end
+
+                if event.type ==pygame.KEYDOWN:
+                    if  event.key == pygame.K_DOWN: #verificando se a tecla pressionada é a K_DOWN(seta pra baixo)
+                        if menu_option < len(MENU_OPTIONS) -1:
+                            menu_option += 1
+                        else:
+                            menu_option = 0
+
+                    if  event.key == pygame.K_UP:
+                        if menu_option > 0:
+                            menu_option -= 1
+                        else:
+                            menu_option = len(MENU_OPTIONS) -1
+
+                    if event.key == pygame.K_RETURN:
+                        return MENU_OPTIONS[menu_option]
+
 
     def menu_text(self, text_size: int, text: str, text_color: tuple, text_center_pos: tuple):
         # Carrega a fonte do sistema (note o 'F' maiúsculo em SysFont)
