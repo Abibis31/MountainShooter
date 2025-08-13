@@ -13,13 +13,13 @@ image_menu = 'assets/bodys/menu.png'
 class Menu:
     def __init__(self, window):
         self.window = window
-        self.surf = pygame.image.load(image_menu)
+        self.surf = pygame.image.load(image_menu).convert_alpha()
         self.rect = self.surf.get_rect(left=0, top=0)
 
     def run(self, ):
 
         menu_option = 0
-        pygame.mixer_music.load('assets/bodys/menu_music.mp3')  # buscando music
+        pygame.mixer_music.load('assets/MUSICS/menu_music.mp3')  # buscando music
         pygame.mixer_music.play(-1)  # o menos um e para fazer um loop´na music
 
         while True:

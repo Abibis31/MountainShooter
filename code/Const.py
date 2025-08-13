@@ -10,8 +10,8 @@ MENU_OPTIONS = ('NEW GAME 1P',
 
 ENTITY_SPEED = {
     'level10': 0,
-    'level11': 1,
-    'level12': 2,
-    'level13': 3,
-    'level14': 4,
+    'level11': 0.01,
+    'level12': 1,
+    'level13': 2,
+    'level14': 3,
 }
