@@ -1,7 +1,10 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
+import random
+
 import pygame.display
 
+from code.Const import MENU_OPTIONS, EVENT_ENEMY, SPAWN_TIME
 from code.Entity import Entity
 from code.EntityFactory import EntityFactory
 from pygame import Surface, Rect
@@ -15,6 +18,11 @@ class Level:
         self.game_mode = game_mode
         self.entity_list : list[Entity] = []
         self.entity_list.extend(EntityFactory.get_entity('level1'))
+        self.entity_list.append(EntityFactory.get_entity('ship_pixel_player1'))
+
+        if game_mode in [MENU_OPTIONS[1], MENU_OPTIONS[2]]:
+            self.entity_list.append(EntityFactory.get_entity('ship_pixel_player2'))
+        pygame.time.set_timer(EVENT_ENEMY,SPAWN_TIME)
 
     def run(self, ):
         pygame.mixer_music.load('assets/MUSICS/level1.mp3')
@@ -29,10 +37,14 @@ class Level:
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     quit()
+                if event.type == EVENT_ENEMY:
+                    choice = random.choice(('nave_1', 'nave_2'))
+                    self.entity_list.append(EntityFactory.get_entity(choice))
 
-            self.level_text(14, f'{self.name} - Timeout: {self.timeout / 1000 : .1f}s', (255, 128, 120), (20, 5))
-            self.level_text(14, f'fps: {clock.get_fps() : .0f}', (255, 128, 120), (20,285))
-            self.level_text(14, f'entidades: {len(self.entity_list)}', (255, 128, 120), (35,300))
+
+            self.level_text(14, f'{self.name} - Timeout: {self.timeout / 1000 : .1f}s', (0, 0, 0), (20, 5))
+            self.level_text(14, f'fps: {clock.get_fps() : .0f}', (0, 0, 0), (20,285))
+            self.level_text(14, f'entidades: {len(self.entity_list)}', (0, 0, 0), (35,300))
             pygame.display.flip()
 
     def level_text(self, text_size: int, text: str, text_color: tuple, text_center_pos: tuple):

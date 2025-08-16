@@ -19,8 +19,6 @@ class Game:
 
 
     def run(self, ):
-
-
         while True:  # laço para manter a janela
             menu = Menu(self.window)
             menu_return = menu.run()

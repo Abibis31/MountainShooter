@@ -1,3 +1,10 @@
+import random
+
+
+from code.Enemy import Enemy
+from code.Player import Player
+
+from code.Const import WIN_HEIGHT
 from code.background import Background
 
 
@@ -16,3 +23,12 @@ class EntityFactory:
                     list_level.append(Background(f'level1{i}', (575, 0)))
 
                 return list_level
+            case 'ship_pixel_player1':
+                print('nave ativa')
+                return Player('ship_pixel_player1', (100, 110))
+            case 'ship_pixel_player2':
+                return Player('ship_pixel_player2', (100, 90))
+            case 'nave_1':
+                return Enemy('nave_1', (600, random.randint(30,WIN_HEIGHT-30)))
+            case 'nave_2':
+                return Enemy('nave_2', (600, random.randint(30, WIN_HEIGHT-30)))
