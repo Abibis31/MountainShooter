@@ -4,6 +4,7 @@ import random
 
 import pygame.display
 
+from code.EntityMediator import EntityMediator
 from code.Const import MENU_OPTIONS, EVENT_ENEMY, SPAWN_TIME
 from code.Entity import Entity
 from code.EntityFactory import EntityFactory
@@ -41,11 +42,15 @@ class Level:
                     choice = random.choice(('nave_1', 'nave_2'))
                     self.entity_list.append(EntityFactory.get_entity(choice))
 
-
+            #printed text
             self.level_text(14, f'{self.name} - Timeout: {self.timeout / 1000 : .1f}s', (0, 0, 0), (20, 5))
             self.level_text(14, f'fps: {clock.get_fps() : .0f}', (0, 0, 0), (20,285))
             self.level_text(14, f'entidades: {len(self.entity_list)}', (0, 0, 0), (35,300))
             pygame.display.flip()
+
+            #Colisões
+            EntityMediator.verify_collision(entity_list=self.entity_list)
+            EntityMediator.verify_health(entity_list=self.entity_list)
 
     def level_text(self, text_size: int, text: str, text_color: tuple, text_center_pos: tuple):
         # Carrega a fonte do sistema (note o 'F' maiúsculo em SysFont)

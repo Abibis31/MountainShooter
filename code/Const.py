@@ -20,6 +20,20 @@ ENTITY_SPEED = {
     'nave_1': 2,
     'nave_2': 1.5,
 }
+ENTITY_HEALTH = {
+    'level10':999,
+    'level11':999,
+    'level12':999,
+    'level13':999,
+    'level14':999,
+
+    'ship_pixel_player1':300,
+    'ship_pixel_player2':300,
+
+    'nave_1': 55,
+    'nave_2':65,
+}
+
 PLAYER_KEY_UP = {'ship_pixel_player1':pygame.K_UP,
                 'ship_pixel_player2': pygame.K_w}
 PLAYER_KEY_DOWN={'ship_pixel_player1':pygame.K_DOWN,
