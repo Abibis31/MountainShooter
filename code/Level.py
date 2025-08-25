@@ -43,6 +43,11 @@ class Level:
 
                     if shoot is not None:
                         self.entity_list.append(shoot)
+                if ent.name =='ship_pixel_player1':
+                    self.level_text(15, f'Jogador1 - Vida: {ent.health} | Score {ent.score}', (0, 0, 0), (54, 20))
+
+                if ent.name =='ship_pixel_player2':
+                    self.level_text(15, f'Jogador2 - Vida: {ent.health}  | Score {ent.score}', (0, 0, 0), (54, 35))
 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
