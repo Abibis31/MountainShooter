@@ -12,7 +12,7 @@ class Game:
         self.window = None
         self.Port1 = None
         self.name = None
-        self.enity_list = None
+        self.entity_list = None
 
         pygame.init()
         self.window = pygame.display.set_mode(size=(576, 324))  # inicializa a janela
@@ -24,8 +24,12 @@ class Game:
             menu_return = menu.run()
 
             if menu_return in [MENU_OPTIONS[0], MENU_OPTIONS[1], MENU_OPTIONS[2]]:
-                level = Level(self.window, 'level1', menu_return)
-                level_return = level.run()
+                player_score = [0,0] #[player1, player2]
+                level = Level(self.window, 'level1', menu_return, player_score)
+                level_return = level.run(player_score)
+                if level_return:
+                    level = Level(self.window, 'level2', menu_return, player_score)
+                    level_return = level.run(player_score)
 
             elif menu_return == MENU_OPTIONS[4]:
                 pygame.quit()

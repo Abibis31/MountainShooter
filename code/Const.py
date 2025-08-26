@@ -13,6 +13,7 @@ MENU_OPTIONS = ('NEW GAME 1P',
 
 )
 EVENT_ENEMY = pygame.USEREVENT + 1
+EVENT_TIMEOUT = pygame.USEREVENT + 2
 
 ENTITY_SPEED = {
     'level10': 0,
@@ -21,11 +22,19 @@ ENTITY_SPEED = {
     'level13': 2,
     'level14': 3,
 
+    'level20': 0.5,
+    'level21': 1,
+    'level22': 1.5,
+    'level23': 2,
+
+
     'nave_1': 2,
     'nave_2': 1.5,
+    'nave_3':1.5,
 
     'nave_1_shot': 3,
     'nave_2_shot': 2,
+    'nave_3_shot':2.5,
 
     'ship_pixel_player1_shot': 3,
     'ship_pixel_player2_shot': 3,
@@ -37,22 +46,30 @@ ENTITY_HEALTH = {
     'level13':999,
     'level14':999,
 
-    'ship_pixel_player1':150,
-    'ship_pixel_player2':130,
+    'level20': 999,
+    'level21': 999,
+    'level22': 999,
+    'level23': 999,
+
+    'ship_pixel_player1':130,
+    'ship_pixel_player2':100,
 
     'nave_1': 50,
     'nave_2':65,
+    'nave_3':50,
 
     'ship_pixel_player1_shot':1,
     'ship_pixel_player2_shot':5,
     'nave_1_shot':1,
     'nave_2_shot':2,
+    'nave_3_shot':2
 }
 ENITY_SHOT_DELAY ={
     'ship_pixel_player1':13,
     'ship_pixel_player2':13,
     'nave_1':50,
     'nave_2':45,
+    'nave_3':38
 }
 ENTITY_DAMAGE ={
     'level10':0,
@@ -61,16 +78,23 @@ ENTITY_DAMAGE ={
     'level13':0,
     'level14':0,
 
+    'level20': 0,
+    'level21': 0,
+    'level22': 0,
+    'level23': 0,
+
     'ship_pixel_player1':1,
     'ship_pixel_player2':1,
 
     'nave_1': 1,
     'nave_2':10,
+    'nave_3':90,
 
-    'ship_pixel_player1_shot':5,
+    'ship_pixel_player1_shot':5.5,
     'ship_pixel_player2_shot':5,
-    'nave_1_shot':2,
-    'nave_2_shot':2,
+    'nave_1_shot':15,
+    'nave_2_shot':25,
+    'nave_3_shot':45
 }
 
 ENTITY_SCORE = {
@@ -79,17 +103,23 @@ ENTITY_SCORE = {
     'level12': 0,
     'level13': 0,
     'level14': 0,
+    'level20': 0,
+    'level21': 0,
+    'level22': 0,
+    'level23': 0,
 
     'ship_pixel_player1': 0,
     'ship_pixel_player2': 0,
 
     'nave_1': 10,
     'nave_2': 25,
+    'nave_3':50,
 
     'ship_pixel_player1_shot': 0,
     'ship_pixel_player2_shot': 0,
     'nave_1_shot': 0,
     'nave_2_shot': 0,
+    'nave_3_shot':0
 
 }
 
@@ -108,7 +138,10 @@ PLAYER_KEY_RIGHT={'ship_pixel_player1':pygame.K_RIGHT,
 PLAYER_KEY_SHOOT={'ship_pixel_player1':pygame.K_RCTRL,
                  'ship_pixel_player2':pygame.K_LCTRL}
 
-SPAWN_TIME= 3000
+SPAWN_TIME= 500
+SPAWN_TIME_2 = 1500 #100ms
+TIMEOUT_LEVEL = 50000
+
 
 WIN_HEIGHT = 324
 WIN_WIDTH = 576

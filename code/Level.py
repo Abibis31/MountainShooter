@@ -6,7 +6,7 @@ import pygame.display
 
 from code.Enemy import Enemy
 from code.EntityMediator import EntityMediator
-from code.Const import MENU_OPTIONS, EVENT_ENEMY, SPAWN_TIME
+from code.Const import MENU_OPTIONS, EVENT_ENEMY, SPAWN_TIME, EVENT_TIMEOUT, TIMEOUT_LEVEL, SPAWN_TIME_2
 from code.Entity import Entity
 from code.EntityFactory import EntityFactory
 from pygame import Surface, Rect
@@ -16,20 +16,37 @@ from code.Player import Player
 
 
 class Level:
-    def __init__(self, window, name, game_mode):
-        self.timeout = 20000
+    def __init__(self, window: Surface, name: str, game_mode: str, player_score: list[int]):
+        self.timeout = 0
         self.window = window
         self.name = name
         self.game_mode = game_mode
         self.entity_list : list[Entity] = []
-        self.entity_list.extend(EntityFactory.get_entity('level1'))
-        self.entity_list.append(EntityFactory.get_entity('ship_pixel_player1'))
+        self.entity_list.extend(EntityFactory.get_entity(self.name))
+        player = (EntityFactory.get_entity('ship_pixel_player1'))
+        player.score = player_score[0]
+        self.entity_list.append(player)
+
+        if self.name == 'level1':
+            self.timeout = 50000
+        else:
+            self.timeout = 70000
+
+
 
         if game_mode in [MENU_OPTIONS[1], MENU_OPTIONS[2]]:
-            self.entity_list.append(EntityFactory.get_entity('ship_pixel_player2'))
-        pygame.time.set_timer(EVENT_ENEMY,SPAWN_TIME)
+            player = (EntityFactory.get_entity('ship_pixel_player2'))
+            player.score = player_score[1]
+            self.entity_list.append(player)
+            pygame.time.set_timer(EVENT_ENEMY, SPAWN_TIME_2)
+        else:
+            pygame.time.set_timer(EVENT_ENEMY,SPAWN_TIME)
 
-    def run(self, ):
+        pygame.time.set_timer(EVENT_TIMEOUT,100)#100ms
+
+
+
+    def run(self, player_score: list[int] ):
         pygame.mixer_music.load('assets/MUSICS/level1.mp3')
         pygame.mixer_music.play(-1)
         clock = pygame.time.Clock()  # limitar fps
@@ -53,9 +70,32 @@ class Level:
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     quit()
-                if event.type == EVENT_ENEMY:
+
+                if event.type == EVENT_ENEMY and self.name == 'level1':
                     choice = random.choice(('nave_1', 'nave_2'))
                     self.entity_list.append(EntityFactory.get_entity(choice))
+
+                elif event.type == EVENT_ENEMY and self.name == 'level2':
+                    choice = random.choice(('nave_1', 'nave_2', 'nave_3'))
+                    self.entity_list.append(EntityFactory.get_entity(choice))
+
+                if event.type == EVENT_TIMEOUT:
+                    self.timeout -= 100
+                    if self.timeout == 0:
+                        for  ent in self.entity_list:
+                            if isinstance(ent, Player) and ent.name == 'ship_pixel_player1':
+                                player_score[0] = ent.score
+                            if isinstance(ent, Player) and ent.name == 'ship_pixel_player2':
+                                player_score[1] = ent.score
+                        return True
+
+                found_player = False
+                for ent in self.entity_list:
+                    if isinstance( ent, Player):
+                        found_player = True
+
+                if not  found_player:
+                    return False
 
             #printed text
             self.level_text(14, f'{self.name} - Timeout: {self.timeout / 1000 : .1f}s', (0, 0, 0), (20, 5))
