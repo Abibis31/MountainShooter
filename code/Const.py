@@ -65,7 +65,7 @@ ENTITY_HEALTH = {
     'nave_3_shot':2
 }
 ENITY_SHOT_DELAY ={
-    'ship_pixel_player1':13,
+    'ship_pixel_player1':10,
     'ship_pixel_player2':13,
     'nave_1':50,
     'nave_2':45,
@@ -88,10 +88,11 @@ ENTITY_DAMAGE ={
 
     'nave_1': 1,
     'nave_2':10,
-    'nave_3':90,
+    'nave_3':55,
 
-    'ship_pixel_player1_shot':5.5,
+    'ship_pixel_player1_shot':5,
     'ship_pixel_player2_shot':5,
+
     'nave_1_shot':15,
     'nave_2_shot':25,
     'nave_3_shot':45
@@ -139,10 +140,29 @@ PLAYER_KEY_SHOOT={'ship_pixel_player1':pygame.K_RCTRL,
                  'ship_pixel_player2':pygame.K_LCTRL}
 
 SPAWN_TIME= 500
+
+
 SPAWN_TIME_2 = 1500 #100ms
 TIMEOUT_LEVEL = 50000
 
 
 WIN_HEIGHT = 324
 WIN_WIDTH = 576
+
+SCORE_POS = {
+    'Title':(WIN_WIDTH / 2, 50),
+    'Enter Name':(WIN_WIDTH / 2, 80),
+    'Label':(WIN_WIDTH / 2, 90),
+    'Name':(WIN_WIDTH / 2, 110),
+    0:(WIN_WIDTH / 2, 110),
+    1:(WIN_WIDTH / 2, 130),
+    2:(WIN_WIDTH / 2, 150),
+    3:(WIN_WIDTH / 2, 170),
+    4:(WIN_WIDTH / 2, 190),
+    5:(WIN_WIDTH / 2, 210),
+    6:(WIN_WIDTH / 2, 230),
+    7:(WIN_WIDTH / 2, 250),
+    8:(WIN_WIDTH / 2, 270),
+    9:(WIN_WIDTH / 2, 290),
+}
 

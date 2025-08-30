@@ -72,7 +72,7 @@ class Level:
                     quit()
 
                 if event.type == EVENT_ENEMY and self.name == 'level1':
-                    choice = random.choice(('nave_1', 'nave_2'))
+                    choice = random.choice(('nave_1', 'nave_2', 'nave_3'))
                     self.entity_list.append(EntityFactory.get_entity(choice))
 
                 elif event.type == EVENT_ENEMY and self.name == 'level2':

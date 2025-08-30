@@ -26,14 +26,14 @@ class Menu:
             #desenho do fundo
             self.window.blit(source=self.surf, dest=self.rect)
             #desenho do menu
-            self.menu_text(50,"MOUNTAIN",(255,128, 120), (320, 70))
-            self.menu_text(50, "Shotter", (255, 128, 120), (320, 105))
+            self.menu_text(50,"MOUNTAIN",(255, 174, 66), (320, 70))
+            self.menu_text(50, "Shotter", (255, 174, 66), (320, 105))
 
 
             #tamanho = 200
             for i in range(len(MENU_OPTIONS)):
                 if i == menu_option:
-                    self.menu_text(23, MENU_OPTIONS[i], (238, 173, 45), (320, 200 + 20 * i))
+                    self.menu_text(23, MENU_OPTIONS[i], (255, 165, 10), (320, 200 + 20 * i))
                 else:
                     self.menu_text(23, MENU_OPTIONS[i], (100, 100, 100), (320, 200 + 20 * i))
             pygame.display.flip()
